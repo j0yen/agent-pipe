@@ -2,6 +2,24 @@
 
 > Today the eight wintermute tools and recall compose only through shell + jq, which loses the record structure at each pipe boundary: a `recall query` JSON-with-evidence flattened to ids becomes a re-query nightmare.
 
+## Install
+
+### One-liner
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/j0yen/agent-pipe/main/install.sh | bash
+```
+
+### Manual
+
+```sh
+git clone --depth 1 https://github.com/j0yen/agent-pipe.git
+cd agent-pipe
+./install.sh
+```
+
+Installs the `apipe` binary via `cargo install --path . --locked`. Requires `cargo` / `rustc 1.85+` and `git`. Built binary lands in `~/.cargo/bin/`.
+
 ## Why
 
 Today the eight wintermute tools and recall compose only through shell + jq, which loses the record structure at each pipe boundary: a `recall query` JSON-with-evidence flattened to ids becomes a re-query nightmare. Apipe is a shared NDJSON record schema plus a thin streaming runtime so each stage of a pipeline enriches records rather than reducing them to bytes. Phase 0 (this slice) ships the runtime binary with `pass`/`top`/`sort`/`pretty`/`schema`/`filter`/`to-paths`/`from-paths` and the shared schema (recall_hit, transcript_turn, file_event); adapter-mode changes to existing tools land in a separate slice.
